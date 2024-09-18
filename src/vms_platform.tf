@@ -13,37 +13,37 @@ variable "vm_db_family" {
   type        = string
   default     = "ubuntu-2004-lts"
   description = "Укажите ОС"
-  
+
 }
 
 variable "vm_db_vpc_name" {
   type        = string
-  default     = "develop_db"
+  default     = "develop-db"
   description = "subnet name"
 }
 
 
 variable "vm_db_platform_id" {
-  type = string
-  default = "standard-v2"
+  type        = string
+  default     = "standard-v2"
   description = "Укажите платформу"
 }
 
 
 variable "vm_db_preemptible" {
-  type = bool
-  default = true
+  type        = bool
+  default     = true
   description = "С прерыванием или нет"
 }
 
 variable "vm_db_nat" {
-  type = bool
-  default = "true"
+  type        = bool
+  default     = "true"
   description = "Включить nat "
 }
 
 variable "vm_db_serial-port-enable" {
-  type = number
+  type    = number
   default = 1
 }
 
@@ -53,13 +53,13 @@ variable "vm_db_yandex_compute_instance" {
     platform_id   = string
     cores         = number
     memory        = number
-    core_fraction = number 
+    core_fraction = number
   })
   default = {
-    name = "netology-develop-platform-db"
-    platform_id = "standard-v2"
-    cores = 2
-    memory = 2
+    name          = "netology-develop-platform-db"
+    platform_id   = "standard-v2"
+    cores         = 2
+    memory        = 2
     core_fraction = 20
   }
 }
