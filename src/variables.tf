@@ -41,56 +41,103 @@ variable "vm_web_family" {
   type        = string
   default     = "ubuntu-2004-lts"
   description = "Укажите ОС"
-  
+
 }
 
 
 variable "vm_web_platform_id" {
-  type = string
-  default = "standard-v2"
+  type        = string
+  default     = "standard-v2"
   description = "Укажите платформу"
 }
 
 
 variable "vm_web_preemptible" {
-  type = bool
-  default = true
+  type        = bool
+  default     = true
   description = "С прерыванием или нет"
 }
 
 variable "vm_web_nat" {
-  type = bool
-  default = "true"
+  type        = bool
+  default     = "true"
   description = "Включить nat "
 }
 
-variable "vm_web_serial-port-enable" {
-  type = number
-  default = 1
-}
+# variable "vm_web_serial-port-enable" {
+#   type    = number
+#   default = 1
+# }
 
-variable "vm_web_yandex_compute_instance" {
-  type = object({
-    name          = string
-    platform_id   = string
+
+variable "vms_resources" {
+  type = map(object({
     cores         = number
     memory        = number
-    core_fraction = number 
-  })
+    core_fraction = number
+    platform_id   = string
+  }))
   default = {
-    name = "netology-develop-platform-web"
-    platform_id = "standard-v2"
-    cores = 2
-    memory = 1
-    core_fraction = 5
+    web = {
+      cores         = 2
+      memory        = 1
+      core_fraction = 5
+      platform_id   = "standard-v2"
+
+    }
+
+    db = {
+      cores         = 2
+      memory        = 2
+      core_fraction = 20
+      platform_id   = "standard-v2"
+    }
   }
 }
+#variable "vm_web_yandex_compute_instance" {
+
+# type = object({
+#   name          = string
+#   platform_id   = string
+#   cores         = number
+#   memory        = number
+#   core_fraction = number
+# })
+# default = {
+#   name = "netology-develop-platform-web"
+#   platform_id = "standard-v2"
+#   cores = 2
+#   memory = 1
+#   core_fraction = 5
+# }
+#}
 
 
 ###ssh vars
 
-variable "vm_web_vms_ssh_root_key" {
-  type        = string
-  default     = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEcJoWqqcrEaHNhXdfamU9lTjLznakAQMYG2gyLvwiSy alex@MiWiFi-RA72-srv"
-  description = "ssh-keygen -t ed25519"
+# variable "vm_web_vms_ssh_root_key" {
+#   type        = string
+#   default     = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFjeEOGD6Conv4furMWud4yGqKg1NRo1zX4/zWpOOMZe a.mishanin@MacBook-Pro-Aleksandr.local"
+#   description = "ssh-keygen -t ed25519"
+# }
+
+variable "metadata" {
+  type = map(object({
+    serial-port-enable = number
+    ssh-keys           = string
+  }))
+
+  default = {
+    web = {
+      serial-port-enable = 1
+      ssh-keys           = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFjeEOGD6Conv4furMWud4yGqKg1NRo1zX4/zWpOOMZe a.mishanin@MacBook-Pro-Aleksandr.local"
+    },
+
+    db = {
+      serial-port-enable = 1
+      ssh-keys           = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFjeEOGD6Conv4furMWud4yGqKg1NRo1zX4/zWpOOMZe a.mishanin@MacBook-Pro-Aleksandr.local"
+
+
+    }
+  }
 }

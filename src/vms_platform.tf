@@ -23,11 +23,11 @@ variable "vm_db_vpc_name" {
 }
 
 
-variable "vm_db_platform_id" {
-  type        = string
-  default     = "standard-v2"
-  description = "Укажите платформу"
-}
+# variable "vm_db_platform_id" {
+#   type        = string
+#   default     = "standard-v2"
+#   description = "Укажите платформу"
+# }
 
 
 variable "vm_db_preemptible" {
@@ -42,33 +42,34 @@ variable "vm_db_nat" {
   description = "Включить nat "
 }
 
-variable "vm_db_serial-port-enable" {
-  type    = number
-  default = 1
-}
+# variable "vm_db_serial-port-enable" {
+#   type    = number
+#   default = 1
+# }
 
-variable "vm_db_yandex_compute_instance" {
-  type = object({
-    name          = string
-    platform_id   = string
-    cores         = number
-    memory        = number
-    core_fraction = number
-  })
-  default = {
-    name          = "netology-develop-platform-db"
-    platform_id   = "standard-v2"
-    cores         = 2
-    memory        = 2
-    core_fraction = 20
-  }
-}
+#variable "vm_db_yandex_compute_instance" {
+
+# type = object({
+#   name          = string
+#   platform_id   = string
+#   cores         = number
+#   memory        = number
+#   core_fraction = number
+# })
+# default = {
+#   name          = "netology-develop-platform-db"
+#   platform_id   = "standard-v2"
+#   cores         = 2
+#   memory        = 2
+#   core_fraction = 20
+# }
+#}
 
 
 ###ssh vars
 
-variable "vm_db_vms_ssh_root_key" {
-  type        = string
-  default     = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEcJoWqqcrEaHNhXdfamU9lTjLznakAQMYG2gyLvwiSy alex@MiWiFi-RA72-srv"
-  description = "ssh-keygen -t ed25519"
-}
+# variable "vm_db_vms_ssh_root_key" {
+#   type        = string
+#   default     = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFjeEOGD6Conv4furMWud4yGqKg1NRo1zX4/zWpOOMZe a.mishanin@MacBook-Pro-Aleksandr.local"
+#   description = "ssh-keygen -t ed25519"
+# }

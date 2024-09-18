@@ -14,12 +14,12 @@ data "yandex_compute_image" "ubuntu" {
 }
 resource "yandex_compute_instance" "platform" {
   name        = local.name_web
-  platform_id = var.vm_web_yandex_compute_instance.platform_id
+  platform_id = var.vms_resources.web.platform_id
 
   resources {
-    cores         = var.vm_web_yandex_compute_instance.cores
-    memory        = var.vm_web_yandex_compute_instance.memory
-    core_fraction = var.vm_web_yandex_compute_instance.core_fraction
+    cores         = var.vms_resources.web.cores
+    memory        = var.vms_resources.web.memory
+    core_fraction = var.vms_resources.web.core_fraction
   }
   boot_disk {
     initialize_params {
@@ -35,8 +35,8 @@ resource "yandex_compute_instance" "platform" {
   }
 
   metadata = {
-    serial-port-enable = var.vm_web_serial-port-enable
-    ssh-keys           = "ubuntu:${var.vm_web_vms_ssh_root_key}"
+    serial-port-enable = var.metadata.web.serial-port-enable
+    ssh-keys           = "ubuntu:${var.metadata.web.ssh-keys}"
   }
 
 }
@@ -63,12 +63,12 @@ data "yandex_compute_image" "ubuntu_db" {
 }
 resource "yandex_compute_instance" "platform_db" {
   name        = local.name_db
-  platform_id = var.vm_db_yandex_compute_instance.platform_id
+  platform_id = var.vms_resources.db.platform_id
   zone        = var.vm_db_default_zone
   resources {
-    cores         = var.vm_db_yandex_compute_instance.cores
-    memory        = var.vm_db_yandex_compute_instance.memory
-    core_fraction = var.vm_db_yandex_compute_instance.core_fraction
+    cores         = var.vms_resources.db.cores
+    memory        = var.vms_resources.db.memory
+    core_fraction = var.vms_resources.db.core_fraction
   }
   boot_disk {
     initialize_params {
@@ -84,8 +84,8 @@ resource "yandex_compute_instance" "platform_db" {
   }
 
   metadata = {
-    serial-port-enable = var.vm_db_serial-port-enable
-    ssh-keys           = "ubuntu:${var.vm_db_vms_ssh_root_key}"
+    serial-port-enable = var.metadata.db.serial-port-enable
+    ssh-keys           = "ubuntu:${var.metadata.db.ssh-keys}"
   }
 
 }
